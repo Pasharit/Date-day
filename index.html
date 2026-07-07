@@ -1,139 +1,282 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Для Евы 💚</title>
+    <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Для Евы ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-  <div class="app">
 
-    <!-- Загрузка -->
-    <section class="scene active" id="scene-loading">
-      <div class="loading-box">
+<div id="loadingScreen">
+
+    <div class="loadingContent">
+
         <div class="loader"></div>
+
         <h1>Подготавливаем кое-что особенное...</h1>
+
         <p>Только для Евы ❤️</p>
-      </div>
-    </section>
 
-    <!-- 1. Утренний лес -->
-    <section class="scene" id="scene-forest">
-      <div class="sky"></div>
-      <div class="sun"></div>
-      <div class="rays"></div>
+    </div>
 
-      <div class="cloud cloud-1"></div>
-      <div class="cloud cloud-2"></div>
+</div>
 
-      <div class="mountain mountain-1"></div>
-      <div class="mountain mountain-2"></div>
+<main id="world">
 
-      <div class="forest-layer forest-back"></div>
-      <div class="forest-layer forest-front"></div>
+    <!-- НЕБО -->
 
-      <div class="tree tree-left"></div>
-      <div class="tree tree-right"></div>
+    <div id="sky">
 
-      <div class="vine vine-1"></div>
-      <div class="vine vine-2"></div>
-      <div class="vine vine-3"></div>
+        <div id="sun"></div>
 
-      <div class="bird bird-1">⌁</div>
-      <div class="bird bird-2">⌁</div>
-      <div class="bird bird-3">⌁</div>
+        <div id="sunGlow"></div>
 
-      <div class="leaf leaf-1">🍃</div>
-      <div class="leaf leaf-2">🌿</div>
-      <div class="leaf leaf-3">🍃</div>
-      <div class="leaf leaf-4">🌱</div>
+        <div id="clouds">
 
-      <div class="grass"></div>
-      <div class="flowers">🌸 🌼 🌷 🌸 🌺 🌼 🌷</div>
+            <div class="cloud c1"></div>
+            <div class="cloud c2"></div>
+            <div class="cloud c3"></div>
+            <div class="cloud c4"></div>
+            <div class="cloud c5"></div>
+            <div class="cloud c6"></div>
 
-      <div class="story-card">
-        <h1>Привет ❤️</h1>
-        <p>
-          Сегодня я хочу пригласить тебя
-          в маленькое путешествие...
-        </p>
-        <button id="startJourney">🌿 Начать путешествие</button>
-      </div>
-    </section>
-
-    <!-- 2. Цветочная поляна -->
-    <section class="scene" id="scene-meadow">
-      <div class="meadow-bg"></div>
-      <div class="magic-flower" id="magicFlower">🌸</div>
-
-      <div class="story-card">
-        <h1>Цветочная поляна 🌸</h1>
-        <p>
-          Иногда самые красивые истории начинаются
-          с одного маленького шага.
-        </p>
-        <button onclick="goScene('scene-memory')">Дальше ❤️</button>
-      </div>
-    </section>
-
-    <!-- 3. Дерево воспоминаний -->
-    <section class="scene" id="scene-memory">
-      <div class="memory-bg"></div>
-
-      <div class="memory-tree">
-        <button class="heart-note">❤️</button>
-        <button class="heart-note">💚</button>
-        <button class="heart-note">💕</button>
-        <button class="heart-note">💖</button>
-      </div>
-
-      <div class="story-card small-card">
-        <h1>Дерево воспоминаний</h1>
-        <p id="memoryText">Нажми на сердечки на дереве.</p>
-        <button onclick="goScene('scene-question')">К главному вопросу</button>
-      </div>
-    </section>
-
-    <!-- 4. Вопрос -->
-    <section class="scene" id="scene-question">
-      <div class="sunset-bg"></div>
-
-      <div class="story-card">
-        <h1>Ева ❤️</h1>
-        <p>Пойдёшь со мной на свидание?</p>
-
-        <button onclick="yesAnswer()">Да 💚</button>
-        <button onclick="yesAnswer()">Конечно да 🥰</button>
-      </div>
-    </section>
-
-    <!-- 5. Финал -->
-    <section class="scene" id="scene-final">
-      <div class="night-bg"></div>
-
-      <div class="story-card">
-        <h1>Урааа ❤️</h1>
-        <p>
-          Тогда это официальное приглашение.
-        </p>
-
-        <div class="date-box">
-          📍 <b>Где:</b> сюда впишем место<br />
-          📅 <b>Когда:</b> сюда впишем дату<br />
-          🕒 <b>Во сколько:</b> сюда впишем время
         </div>
 
-        <button onclick="makeHearts()">До встречи ❤️</button>
-      </div>
+    </div>
+
+    <!-- ДАЛЬНИЙ ФОН -->
+
+    <div id="background">
+
+        <div class="mountain m1"></div>
+        <div class="mountain m2"></div>
+        <div class="mountain m3"></div>
+
+        <div id="mist"></div>
+
+    </div>
+
+    <!-- ЛЕС -->
+
+    <div id="forestBack"></div>
+
+    <div id="forestMiddle"></div>
+
+    <div id="forestFront"></div>
+
+    <!-- ДЕРЕВЬЯ -->
+
+    <div id="trees">
+
+        <div class="tree t1"></div>
+        <div class="tree t2"></div>
+        <div class="tree t3"></div>
+        <div class="tree t4"></div>
+        <div class="tree t5"></div>
+        <div class="tree t6"></div>
+
+    </div>
+
+    <!-- КУСТЫ -->
+
+    <div id="bushes"></div>
+
+    <!-- ТРАВА -->
+
+    <div id="grass"></div>
+
+    <!-- ЦВЕТЫ -->
+
+    <div id="flowers"></div>
+
+    <!-- ЛИСТЬЯ -->
+
+    <div id="leaves"></div>
+
+    <!-- БАБОЧКИ -->
+
+    <div id="butterflies"></div>
+
+    <!-- ЧАСТИЦЫ -->
+
+    <div id="particles"></div>
+
+    <!-- ПЕРВАЯ СЦЕНА -->
+
+    <section class="scene active"
+             id="sceneIntro">
+
+        <div class="glassCard">
+
+            <h1>
+
+                Привет ❤️
+
+            </h1>
+
+            <p>
+
+                Сегодня я хочу показать тебе
+                маленькую историю.
+
+            </p>
+
+            <button id="startJourney">
+
+                🌿 Начать путешествие
+
+            </button>
+
+        </div>
+
     </section>
 
-    <div id="heartsLayer"></div>
+    <!-- ВТОРАЯ СЦЕНА -->
 
-  </div>
+    <section class="scene"
+             id="sceneFlower">
+
+        <div class="glassCard">
+
+            <h1>
+
+                🌸
+
+            </h1>
+
+            <p>
+
+                Иногда самые красивые истории
+                начинаются с одного маленького шага.
+
+            </p>
+
+            <button id="nextScene">
+
+                Дальше →
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ТРЕТЬЯ СЦЕНА -->
+
+    <section class="scene"
+             id="sceneTree">
+
+        <div id="memoryTree"></div>
+
+        <div class="glassCard">
+
+            <h1>
+
+                Дерево воспоминаний
+
+            </h1>
+
+            <p>
+
+                Совсем скоро здесь появятся
+                наши маленькие истории ❤️
+
+            </p>
+
+            <button id="openQuestion">
+
+                Продолжить
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ВОПРОС -->
+
+    <section class="scene"
+             id="sceneQuestion">
+
+        <div class="glassCard">
+
+            <h1>
+
+                Ева ❤️
+
+            </h1>
+
+            <p>
+
+                Пойдешь со мной
+                на свидание?
+
+            </p>
+
+            <div class="buttons">
+
+                <button class="yes">
+
+                    Да ❤️
+
+                </button>
+
+                <button class="yes">
+
+                    Конечно да 🥰
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ФИНАЛ -->
+
+    <section class="scene"
+             id="sceneFinish">
+
+        <div class="glassCard">
+
+            <h1>
+
+                До встречи ❤️
+
+            </h1>
+
+            <div class="inviteCard">
+
+                📍 Где:
+
+                <br><br>
+
+                📅 Когда:
+
+                <br><br>
+
+                🕒 Во сколько:
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
 </body>
+
 </html>
