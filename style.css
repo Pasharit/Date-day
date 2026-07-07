@@ -1579,3 +1579,182 @@ padding:14px 26px;
 }
 
 }
+/*======================
+LEAF ITEM
+======================*/
+
+.leafItem{
+position:absolute;
+top:-60px;
+z-index:90;
+pointer-events:none;
+animation:leafFall linear forwards;
+filter:drop-shadow(0 0 8px rgba(255,255,255,.25));
+}
+
+@keyframes leafFall{
+0%{transform:translateY(-60px) translateX(0) rotate(0);opacity:0;}
+10%{opacity:1;}
+50%{transform:translateY(50vh) translateX(40px) rotate(180deg);}
+100%{transform:translateY(120vh) translateX(-60px) rotate(420deg);opacity:0;}
+}
+
+/*======================
+BUTTERFLY
+======================*/
+
+.butterfly{
+position:absolute;
+z-index:95;
+pointer-events:none;
+animation:butterflyMove linear forwards,butterflyWing .4s ease-in-out infinite alternate;
+filter:drop-shadow(0 0 10px rgba(255,255,255,.3));
+}
+
+@keyframes butterflyMove{
+from{transform:translateX(0);}
+to{transform:translateX(120vw);}
+}
+
+@keyframes butterflyWing{
+from{transform:scale(1) rotate(-8deg);}
+to{transform:scale(1.08) rotate(8deg);}
+}
+
+/*======================
+PETALS
+======================*/
+
+.petal{
+position:absolute;
+top:-40px;
+z-index:92;
+pointer-events:none;
+animation:petalFall 14s linear forwards;
+}
+
+@keyframes petalFall{
+0%{transform:translateY(-40px) rotate(0);}
+50%{transform:translateY(50vh) translateX(40px) rotate(180deg);}
+100%{transform:translateY(120vh) translateX(-30px) rotate(360deg);opacity:0;}
+}
+
+/*======================
+SPARK
+======================*/
+
+.spark{
+position:absolute;
+width:6px;
+height:6px;
+border-radius:50%;
+background:#fff9b7;
+box-shadow:
+0 0 12px #fff,
+0 0 24px #ffe77d;
+pointer-events:none;
+animation:sparkFly 1s ease-out forwards;
+z-index:300;
+}
+
+@keyframes sparkFly{
+from{
+transform:translate(0,0) scale(.4);
+opacity:1;
+}
+to{
+transform:translate(var(--x),var(--y)) scale(1.8);
+opacity:0;
+}
+}
+
+/*======================
+HEART RAIN
+======================*/
+
+.heartRain{
+position:absolute;
+top:-80px;
+pointer-events:none;
+z-index:220;
+animation:heartFall linear forwards;
+filter:drop-shadow(0 0 8px rgba(255,80,120,.4));
+}
+
+@keyframes heartFall{
+0%{
+transform:translateY(-60px) rotate(0);
+opacity:0;
+}
+10%{
+opacity:1;
+}
+100%{
+transform:translateY(120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+/*======================
+FIREFLY
+======================*/
+
+.firefly{
+position:absolute;
+width:5px;
+height:5px;
+border-radius:50%;
+background:#fff79d;
+box-shadow:
+0 0 10px #fff799,
+0 0 20px #ffe45d,
+0 0 35px #fff;
+animation:fireflyMove 6s ease-in-out infinite;
+z-index:150;
+}
+
+@keyframes fireflyMove{
+0%{
+transform:translate(0,0);
+opacity:.2;
+}
+25%{
+transform:translate(20px,-18px);
+opacity:1;
+}
+50%{
+transform:translate(-15px,-35px);
+}
+75%{
+transform:translate(25px,-10px);
+opacity:.8;
+}
+100%{
+transform:translate(0,0);
+opacity:.25;
+}
+}
+
+/*======================
+WORLD DEPTH
+======================*/
+
+#world{
+perspective:1200px;
+transform-style:preserve-3d;
+}
+
+#forestBack{filter:blur(2px);}
+#forestMiddle{filter:blur(1px);}
+#forestFront{filter:none;}
+
+.glassCard{
+transition:.45s;
+}
+
+.glassCard:hover{
+transform:translate(-50%,-52%) scale(1.02);
+box-shadow:
+0 35px 90px rgba(0,0,0,.28),
+0 0 40px rgba(255,255,255,.15);
+}
