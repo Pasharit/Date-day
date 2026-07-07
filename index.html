@@ -3,505 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Для Евы 💚</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      overflow: hidden;
-      background: #173f26;
-      color: white;
-    }
-
-    .app {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,210,0.75), transparent 25%),
-        linear-gradient(180deg, #bfffd0 0%, #6ed287 35%, #2e8a4e 70%, #174326 100%);
-    }
-
-    .sun {
-      position: absolute;
-      top: -90px;
-      left: 50%;
-      width: 260px;
-      height: 260px;
-      transform: translateX(-50%);
-      background: radial-gradient(circle, #fff8b8, #ffe98a 35%, transparent 70%);
-      filter: blur(4px);
-      animation: sunPulse 5s ease-in-out infinite alternate;
-    }
-
-    @keyframes sunPulse {
-      from { opacity: .65; transform: translateX(-50%) scale(1); }
-      to { opacity: 1; transform: translateX(-50%) scale(1.12); }
-    }
-
-    .rays {
-      position: absolute;
-      inset: -20%;
-      background:
-        conic-gradient(from 180deg at 50% 0%,
-        transparent 0deg,
-        rgba(255,255,210,.24) 18deg,
-        transparent 35deg,
-        transparent 55deg,
-        rgba(255,255,210,.18) 75deg,
-        transparent 95deg,
-        transparent 130deg,
-        rgba(255,255,210,.2) 150deg,
-        transparent 170deg,
-        transparent 360deg);
-      animation: raysMove 12s linear infinite;
-      opacity: .85;
-    }
-
-    @keyframes raysMove {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(8deg); }
-    }
-
-    .mountain {
-      position: absolute;
-      bottom: 170px;
-      width: 70vw;
-      height: 300px;
-      background: linear-gradient(180deg, #4aa766, #22643a);
-      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-      opacity: .45;
-      filter: blur(1px);
-    }
-
-    .mountain.one { left: -18vw; }
-    .mountain.two { right: -22vw; transform: scaleX(1.2); opacity: .35; }
-
-    .tree {
-      position: absolute;
-      bottom: 70px;
-      width: 170px;
-      height: 520px;
-      background: linear-gradient(90deg, #4b2f18, #7b4d25, #3d2412);
-      border-radius: 80px 80px 20px 20px;
-      z-index: 3;
-    }
-
-    .tree.left { left: -70px; transform: rotate(3deg); }
-    .tree.right { right: -80px; transform: rotate(-3deg); }
-
-    .tree::before {
-      content: "";
-      position: absolute;
-      top: -150px;
-      left: -110px;
-      width: 390px;
-      height: 330px;
-      background:
-        radial-gradient(circle at 40% 40%, #2fa85a 0 70px, transparent 72px),
-        radial-gradient(circle at 65% 45%, #227d42 0 95px, transparent 97px),
-        radial-gradient(circle at 50% 20%, #3bc76b 0 85px, transparent 87px);
-      animation: crownMove 4s ease-in-out infinite alternate;
-    }
-
-    @keyframes crownMove {
-      from { transform: translateY(0) rotate(-1deg); }
-      to { transform: translateY(7px) rotate(1deg); }
-    }
-
-    .vine {
-      position: absolute;
-      top: -10px;
-      width: 18px;
-      height: 240px;
-      background: linear-gradient(#1f7d3c, #2ab75a);
-      border-radius: 20px;
-      z-index: 5;
-      animation: vineSwing 4s ease-in-out infinite alternate;
-    }
-
-    .vine::after {
-      content: "🌿🌿🌿";
-      position: absolute;
-      top: 30px;
-      left: -22px;
-      writing-mode: vertical-rl;
-      font-size: 24px;
-    }
-
-    .vine.v1 { left: 8%; }
-    .vine.v2 { right: 12%; height: 190px; animation-delay: 1s; }
-    .vine.v3 { left: 48%; height: 150px; animation-delay: 2s; }
-
-    @keyframes vineSwing {
-      from { transform: rotate(-4deg); }
-      to { transform: rotate(5deg); }
-    }
-
-    .grass {
-      position: absolute;
-      bottom: -30px;
-      width: 100%;
-      height: 230px;
-      background:
-        radial-gradient(circle at 10% 30%, #55c873 0 45px, transparent 46px),
-        radial-gradient(circle at 30% 20%, #33a85b 0 65px, transparent 66px),
-        radial-gradient(circle at 55% 25%, #62d47c 0 55px, transparent 56px),
-        radial-gradient(circle at 75% 35%, #2f9951 0 75px, transparent 76px),
-        radial-gradient(circle at 90% 20%, #49c66f 0 55px, transparent 56px),
-        linear-gradient(180deg, #3fb85f, #14572e);
-      border-radius: 50% 50% 0 0;
-      z-index: 4;
-      animation: grassWave 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes grassWave {
-      from { transform: scaleX(1); }
-      to { transform: scaleX(1.025); }
-    }
-
-    .flowers {
-      position: absolute;
-      bottom: 70px;
-      left: 0;
-      width: 100%;
-      z-index: 6;
-      font-size: 24px;
-      letter-spacing: 22px;
-      text-align: center;
-      animation: flowersMove 4s ease-in-out infinite alternate;
-    }
-
-    @keyframes flowersMove {
-      from { transform: translateY(0); }
-      to { transform: translateY(-8px); }
-    }
-
-    .bird {
-      position: absolute;
-      font-size: 28px;
-      z-index: 7;
-      animation: fly 15s linear infinite;
-    }
-
-    .bird.b1 { top: 16%; left: -10%; }
-    .bird.b2 { top: 25%; left: -20%; animation-delay: 4s; font-size: 22px; }
-    .bird.b3 { top: 12%; left: -30%; animation-delay: 8s; font-size: 20px; }
-
-    @keyframes fly {
-      from { transform: translateX(0) translateY(0); }
-      to { transform: translateX(140vw) translateY(-45px); }
-    }
-
-    .leaf {
-      position: absolute;
-      top: -50px;
-      z-index: 8;
-      font-size: 25px;
-      animation: fall 9s linear infinite;
-      opacity: .85;
-    }
-
-    .leaf.l1 { left: 14%; }
-    .leaf.l2 { left: 34%; animation-delay: 2s; }
-    .leaf.l3 { left: 58%; animation-delay: 4s; }
-    .leaf.l4 { left: 78%; animation-delay: 6s; }
-
-    @keyframes fall {
-      from { transform: translateY(-60px) rotate(0deg); }
-      to { transform: translateY(115vh) rotate(340deg); }
-    }
-
-    .page {
-      position: absolute;
-      inset: 0;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(.98);
-      transition: 1s ease;
-    }
-
-    .page.active {
-      opacity: 1;
-      pointer-events: auto;
-      transform: scale(1);
-    }
-
-    .card {
-      width: 100%;
-      max-width: 470px;
-      padding: 34px 26px;
-      text-align: center;
-      border-radius: 34px;
-      background: rgba(255, 255, 255, .72);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,.85);
-      box-shadow: 0 25px 70px rgba(20, 75, 38, .45);
-      color: #174326;
-      animation: cardFloat 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes cardFloat {
-      from { transform: translateY(0); }
-      to { transform: translateY(-9px); }
-    }
-
-    h1 {
-      font-size: 34px;
-      margin-bottom: 16px;
-      color: #165a31;
-    }
-
-    p {
-      font-size: 18px;
-      line-height: 1.55;
-      margin-bottom: 24px;
-      color: #285d39;
-    }
-
-    .big-question {
-      font-size: 27px;
-      font-weight: 800;
-      color: #15572f;
-      margin: 18px 0 28px;
-    }
-
-    button {
-      border: none;
-      padding: 15px 26px;
-      margin: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #35c86b, #168342);
-      color: white;
-      font-size: 17px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 12px 28px rgba(19, 112, 54, .45);
-      transition: .25s ease;
-    }
-
-    button:hover {
-      transform: translateY(-4px) scale(1.04);
-    }
-
-    .date-card {
-      margin-top: 22px;
-      padding: 20px;
-      border-radius: 24px;
-      background: rgba(255,255,255,.65);
-      box-shadow: inset 0 0 20px rgba(255,255,255,.4);
-      text-align: left;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    .hearts {
-      position: absolute;
-      inset: 0;
-      z-index: 30;
-      pointer-events: none;
-    }
-
-    .heart {
-      position: absolute;
-      bottom: -40px;
-      font-size: 28px;
-      animation: heartUp 4s linear forwards;
-    }
-
-    @keyframes heartUp {
-      from { transform: translateY(0) scale(.7); opacity: 1; }
-      to { transform: translateY(-110vh) scale(1.5); opacity: 0; }
-    }
-
-    .loading {
-      position: absolute;
-      inset: 0;
-      z-index: 100;
-      background: #07140c;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 1.2s ease;
-    }
-
-    .loading.hide {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .loading-box {
-      text-align: center;
-      color: white;
-    }
-
-    .loader {
-      width: 65px;
-      height: 65px;
-      margin: 0 auto 22px;
-      border-radius: 50%;
-      border: 5px solid rgba(255,255,255,.2);
-      border-top-color: #63e287;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .loading-text {
-      font-size: 20px;
-      opacity: .9;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 29px; }
-      p { font-size: 16px; }
-      .big-question { font-size: 24px; }
-      .tree { width: 110px; }
-      .tree.left { left: -65px; }
-      .tree.right { right: -65px; }
-      .card { padding: 30px 20px; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 
 <body>
   <div class="app">
 
-    <div class="loading" id="loading">
+    <!-- Загрузка -->
+    <section class="scene active" id="scene-loading">
       <div class="loading-box">
         <div class="loader"></div>
-        <div class="loading-text">Подготавливаем кое-что особенное для Евы...</div>
+        <h1>Подготавливаем кое-что особенное...</h1>
+        <p>Только для Евы ❤️</p>
       </div>
-    </div>
+    </section>
 
-    <div class="sun"></div>
-    <div class="rays"></div>
+    <!-- 1. Утренний лес -->
+    <section class="scene" id="scene-forest">
+      <div class="sky"></div>
+      <div class="sun"></div>
+      <div class="rays"></div>
 
-    <div class="mountain one"></div>
-    <div class="mountain two"></div>
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
 
-    <div class="tree left"></div>
-    <div class="tree right"></div>
+      <div class="mountain mountain-1"></div>
+      <div class="mountain mountain-2"></div>
 
-    <div class="vine v1"></div>
-    <div class="vine v2"></div>
-    <div class="vine v3"></div>
+      <div class="forest-layer forest-back"></div>
+      <div class="forest-layer forest-front"></div>
 
-    <div class="bird b1">🕊️</div>
-    <div class="bird b2">🐦</div>
-    <div class="bird b3">🕊️</div>
+      <div class="tree tree-left"></div>
+      <div class="tree tree-right"></div>
 
-    <div class="leaf l1">🍃</div>
-    <div class="leaf l2">🌿</div>
-    <div class="leaf l3">🍃</div>
-    <div class="leaf l4">🌱</div>
+      <div class="vine vine-1"></div>
+      <div class="vine vine-2"></div>
+      <div class="vine vine-3"></div>
 
-    <div class="page active" id="page1">
-      <div class="card">
+      <div class="bird bird-1">⌁</div>
+      <div class="bird bird-2">⌁</div>
+      <div class="bird bird-3">⌁</div>
+
+      <div class="leaf leaf-1">🍃</div>
+      <div class="leaf leaf-2">🌿</div>
+      <div class="leaf leaf-3">🍃</div>
+      <div class="leaf leaf-4">🌱</div>
+
+      <div class="grass"></div>
+      <div class="flowers">🌸 🌼 🌷 🌸 🌺 🌼 🌷</div>
+
+      <div class="story-card">
         <h1>Привет ❤️</h1>
         <p>
-          У меня есть для тебя маленький сюрприз.
-          Он спрятан в этом зелёном волшебном месте.
+          Сегодня я хочу пригласить тебя
+          в маленькое путешествие...
         </p>
-        <button onclick="goToPage(2)">🌿 Нажми, чтобы продолжить</button>
+        <button id="startJourney">🌿 Начать путешествие</button>
       </div>
-    </div>
+    </section>
 
-    <div class="page" id="page2">
-      <div class="card">
-        <h1>Моя любимая Ева ❤️</h1>
+    <!-- 2. Цветочная поляна -->
+    <section class="scene" id="scene-meadow">
+      <div class="meadow-bg"></div>
+      <div class="magic-flower" id="magicFlower">🌸</div>
+
+      <div class="story-card">
+        <h1>Цветочная поляна 🌸</h1>
         <p>
-          Я хотел пригласить тебя не просто сообщением,
-          а сделать для тебя маленький мир.
+          Иногда самые красивые истории начинаются
+          с одного маленького шага.
         </p>
-
-        <div class="big-question">
-          Хочешь ли ты пойти со мной на свидание?
-        </div>
-
-        <button onclick="yesAnswer()">💚 Да</button>
-        <button onclick="yesAnswer()">🥰 Конечно да</button>
+        <button onclick="goScene('scene-memory')">Дальше ❤️</button>
       </div>
-    </div>
+    </section>
 
-    <div class="page" id="page3">
-      <div class="card">
+    <!-- 3. Дерево воспоминаний -->
+    <section class="scene" id="scene-memory">
+      <div class="memory-bg"></div>
+
+      <div class="memory-tree">
+        <button class="heart-note">❤️</button>
+        <button class="heart-note">💚</button>
+        <button class="heart-note">💕</button>
+        <button class="heart-note">💖</button>
+      </div>
+
+      <div class="story-card small-card">
+        <h1>Дерево воспоминаний</h1>
+        <p id="memoryText">Нажми на сердечки на дереве.</p>
+        <button onclick="goScene('scene-question')">К главному вопросу</button>
+      </div>
+    </section>
+
+    <!-- 4. Вопрос -->
+    <section class="scene" id="scene-question">
+      <div class="sunset-bg"></div>
+
+      <div class="story-card">
+        <h1>Ева ❤️</h1>
+        <p>Пойдёшь со мной на свидание?</p>
+
+        <button onclick="yesAnswer()">Да 💚</button>
+        <button onclick="yesAnswer()">Конечно да 🥰</button>
+      </div>
+    </section>
+
+    <!-- 5. Финал -->
+    <section class="scene" id="scene-final">
+      <div class="night-bg"></div>
+
+      <div class="story-card">
         <h1>Урааа ❤️</h1>
         <p>
-          Тогда официально приглашаю тебя на свидание.
-          И я очень жду нашей встречи.
+          Тогда это официальное приглашение.
         </p>
 
-        <div class="date-card">
-          📍 <b>Где:</b> сюда впишем место<br>
-          📅 <b>Когда:</b> сюда впишем дату<br>
+        <div class="date-box">
+          📍 <b>Где:</b> сюда впишем место<br />
+          📅 <b>Когда:</b> сюда впишем дату<br />
           🕒 <b>Во сколько:</b> сюда впишем время
         </div>
 
-        <button onclick="createHearts()">🥰 До встречи</button>
+        <button onclick="makeHearts()">До встречи ❤️</button>
       </div>
-    </div>
+    </section>
 
-    <div class="flowers">🌸 🌼 🌷 🌸 🌺 🌼 🌷</div>
-    <div class="grass"></div>
-    <div class="hearts" id="hearts"></div>
+    <div id="heartsLayer"></div>
+
   </div>
-
-  <script>
-    window.onload = () => {
-      setTimeout(() => {
-        document.getElementById("loading").classList.add("hide");
-      }, 1700);
-    };
-
-    function goToPage(number) {
-      document.querySelectorAll(".page").forEach(page => {
-        page.classList.remove("active");
-      });
-
-      document.getElementById("page" + number).classList.add("active");
-    }
-
-    function yesAnswer() {
-      createHearts();
-      setTimeout(() => {
-        goToPage(3);
-      }, 900);
-    }
-
-    function createHearts() {
-      const hearts = document.getElementById("hearts");
-
-      for (let i = 0; i < 35; i++) {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = ["❤️", "💚", "💕", "💖", "🌸"][Math.floor(Math.random() * 5)];
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDelay = Math.random() * 0.8 + "s";
-        heart.style.fontSize = 20 + Math.random() * 25 + "px";
-
-        hearts.appendChild(heart);
-
-        setTimeout(() => {
-          heart.remove();
-        }, 4500);
-      }
-    }
-  </script>
 </body>
 </html>
