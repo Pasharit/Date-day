@@ -709,3 +709,159 @@ window.addEventListener("blur",()=>{
 ambientAudio.pause();
 
 });
+/*======================
+DATE DATA
+======================*/
+const dateInfo={
+place:"Место пока остаётся маленьким секретом 🌿",
+date:"Дата: скоро выберем вместе ❤️",
+time:"Время: когда тебе будет удобно ✨"
+};
+
+/*======================
+FINISH CARD
+======================*/
+const finishScene=document.getElementById("sceneFinish");
+const inviteCard=finishScene?finishScene.querySelector(".inviteCard"):null;
+
+if(inviteCard){
+inviteCard.innerHTML=`
+<div class="envelope" id="envelope">
+<div class="envelopeBack"></div>
+<div class="letter">
+<span class="letterLabel">Для Евы ❤️</span>
+<h3>Наше свидание</h3>
+<p>${dateInfo.place}</p>
+<p>${dateInfo.date}</p>
+<p>${dateInfo.time}</p>
+<span class="letterHint">Нажми на конверт</span>
+</div>
+<div class="envelopeFront"></div>
+<div class="envelopeFlap"></div>
+<div class="heartSeal">❤️</div>
+</div>
+`;
+}
+
+/*======================
+OPEN ENVELOPE
+======================*/
+const envelope=document.getElementById("envelope");
+let envelopeOpened=false;
+
+if(envelope){
+envelope.addEventListener("click",()=>{
+if(envelopeOpened)return;
+envelopeOpened=true;
+envelope.classList.add("opened");
+spark(window.innerWidth/2,window.innerHeight/2);
+finalPetals();
+setTimeout(finalMessage,1300);
+});
+}
+
+/*======================
+FINAL PETALS
+======================*/
+function finalPetals(){
+for(let i=0;i<55;i++){
+const p=document.createElement("div");
+p.className="finalPetal";
+p.innerHTML=["🌸","💗","✨","💕"][Math.floor(Math.random()*4)];
+p.style.left=45+Math.random()*10+"vw";
+p.style.top=45+Math.random()*10+"vh";
+p.style.fontSize=15+Math.random()*22+"px";
+p.style.setProperty("--finalX",(Math.random()-.5)*900+"px");
+p.style.setProperty("--finalY",(Math.random()-.5)*700+"px");
+p.style.animationDelay=Math.random()*.35+"s";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),3200);
+}
+}
+
+/*======================
+FINAL MESSAGE
+======================*/
+function finalMessage(){
+const old=document.querySelector(".finalMessage");
+if(old)return;
+const box=document.createElement("div");
+box.className="finalMessage";
+box.innerHTML=`
+<div class="finalMessageInner">
+<span>❤️</span>
+<h2>Спасибо, что дошла до конца</h2>
+<p>Надеюсь, эта маленькая история заставила тебя улыбнуться.</p>
+<button id="restartStory">Посмотреть ещё раз</button>
+</div>
+`;
+document.body.appendChild(box);
+requestAnimationFrame(()=>box.classList.add("show"));
+document.getElementById("restartStory").addEventListener("click",restartStory);
+}
+
+/*======================
+RESTART
+======================*/
+function restartStory(){
+const message=document.querySelector(".finalMessage");
+if(message){
+message.classList.remove("show");
+setTimeout(()=>message.remove(),500);
+}
+if(envelope){
+envelope.classList.remove("opened");
+envelopeOpened=false;
+}
+document.querySelectorAll(".firefly").forEach(f=>f.remove());
+document.documentElement.style.removeProperty("--skyTop");
+document.documentElement.style.removeProperty("--skyMiddle");
+document.documentElement.style.removeProperty("--skyBottom");
+showScene(0);
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/*======================
+FINISH TITLE
+======================*/
+yesButtons.forEach(button=>{
+button.addEventListener("click",()=>{
+setTimeout(()=>{
+const title=document.querySelector("#sceneFinish h2");
+const text=document.querySelector("#sceneFinish>p,#sceneFinish .glassCard>p");
+if(title)title.textContent="Для тебя приготовлен маленький сюрприз";
+if(text)text.textContent="Открой конверт и узнай подробности нашего свидания.";
+},800);
+});
+});
+
+/*======================
+CURSOR LIGHT
+======================*/
+const cursorLight=document.createElement("div");
+cursorLight.className="cursorLight";
+document.body.appendChild(cursorLight);
+
+document.addEventListener("pointermove",e=>{
+cursorLight.style.left=e.clientX+"px";
+cursorLight.style.top=e.clientY+"px";
+});
+
+document.addEventListener("pointerdown",()=>{
+cursorLight.classList.add("pressed");
+});
+
+document.addEventListener("pointerup",()=>{
+cursorLight.classList.remove("pressed");
+});
+
+/*======================
+VISIBILITY
+======================*/
+document.addEventListener("visibilitychange",()=>{
+if(document.hidden){
+ambientAudio.pause();
+}else if(ambientAudio.src){
+ambientAudio.play().catch(()=>{});
+}
+});0
