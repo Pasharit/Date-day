@@ -214,6 +214,7 @@ setTimeout(()=>petal.remove(),3200);
 }
 
 function finalMessage(){
+setTimeout(()=>{
 if(document.querySelector(".finalMessage"))return;
 const box=document.createElement("div");
 box.className="finalMessage";
@@ -221,6 +222,7 @@ box.innerHTML='<div class="finalMessageInner"><span>❤️</span><h2>Спаси�
 document.body.appendChild(box);
 requestAnimationFrame(()=>box.classList.add("show"));
 document.getElementById("restartStory")?.addEventListener("click",restartStory);
+},1000000);
 }
 
 function restartStory(){
