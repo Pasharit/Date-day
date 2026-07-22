@@ -490,3 +490,222 @@ nextButton.addEventListener("click",()=>{
 setTimeout(sunset,400);
 
 });
+/*======================
+WORLD LIFE
+======================*/
+
+let wind=0;
+
+setInterval(()=>{
+
+wind=(Math.random()*2-1)*8;
+
+document.documentElement.style.setProperty("--wind",wind+"deg");
+
+},3500);
+
+/*======================
+TREES MOVE
+======================*/
+
+setInterval(()=>{
+
+document.querySelectorAll(".tree").forEach((t,i)=>{
+
+t.animate([
+
+{transform:`rotate(${wind*.2+i*.15}deg)`},
+
+{transform:`rotate(${wind*.55+i*.15}deg)`},
+
+{transform:`rotate(${wind*.2+i*.15}deg)`}
+
+],{
+
+duration:3000+Math.random()*2000,
+
+iterations:1,
+
+fill:"forwards"
+
+});
+
+});
+
+},3200);
+
+/*======================
+MEMORY TREE
+======================*/
+
+const memoryMessages=[
+
+"❤️ Мне нравится твоя улыбка.",
+
+"🌸 С тобой любой день становится лучше.",
+
+"☀️ Спасибо, что ты появилась в моей жизни.",
+
+"💚 Это только начало нашей истории.",
+
+"✨ Самое лучшее ещё впереди."
+
+];
+
+const memoryTree=document.getElementById("memoryTree");
+
+if(memoryTree){
+
+memoryTree.addEventListener("click",()=>{
+
+const card=document.querySelector("#sceneTree .glassCard p");
+
+if(card){
+
+card.innerHTML=memoryMessages[Math.floor(Math.random()*memoryMessages.length)];
+
+}
+
+spark(
+
+window.innerWidth/2,
+
+window.innerHeight/2
+
+);
+
+});
+
+}
+
+/*======================
+STARS
+======================*/
+
+function star(){
+
+const s=document.createElement("div");
+
+s.className="star";
+
+s.style.left=Math.random()*100+"vw";
+
+s.style.top=Math.random()*55+"vh";
+
+s.style.animationDelay=Math.random()*4+"s";
+
+world.appendChild(s);
+
+}
+
+for(let i=0;i<80;i++)star();
+
+/*======================
+SMOOTH CAMERA
+======================*/
+
+function cameraPulse(){
+
+world.animate([
+
+{transform:"scale(1)"},
+
+{transform:"scale(1.01)"},
+
+{transform:"scale(1)"}
+
+],{
+
+duration:8000,
+
+iterations:Infinity
+
+});
+
+}
+
+cameraPulse();
+
+/*======================
+BUTTON SOUND READY
+======================*/
+
+const clickAudio=new Audio();
+
+const ambientAudio=new Audio();
+
+clickAudio.preload="auto";
+
+ambientAudio.loop=true;
+
+function playClick(){
+
+if(clickAudio.src){
+
+clickAudio.currentTime=0;
+
+clickAudio.play();
+
+}
+
+}
+
+document.querySelectorAll("button").forEach(b=>{
+
+b.addEventListener("click",playClick);
+
+});
+
+/*======================
+SCENE EFFECT
+======================*/
+
+function sceneFlash(color){
+
+const d=document.createElement("div");
+
+d.style.position="fixed";
+
+d.style.inset=0;
+
+d.style.background=color;
+
+d.style.opacity=".4";
+
+d.style.pointerEvents="none";
+
+d.style.zIndex="99999";
+
+d.style.transition=".8s";
+
+document.body.appendChild(d);
+
+setTimeout(()=>d.style.opacity="0",50);
+
+setTimeout(()=>d.remove(),900);
+
+}
+
+startButton.addEventListener("click",()=>sceneFlash("#dfffe8"));
+
+nextButton.addEventListener("click",()=>sceneFlash("#fff0c7"));
+
+questionButton.addEventListener("click",()=>sceneFlash("#ffd9ef"));
+
+yesButtons.forEach(b=>b.addEventListener("click",()=>sceneFlash("#ffe2e2")));
+
+/*======================
+AUTO AMBIENCE
+======================*/
+
+window.addEventListener("focus",()=>{
+
+if(ambientAudio.src)ambientAudio.play().catch(()=>{});
+
+});
+
+window.addEventListener("blur",()=>{
+
+ambientAudio.pause();
+
+});
