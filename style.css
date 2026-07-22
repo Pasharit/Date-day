@@ -1758,3 +1758,210 @@ box-shadow:
 0 35px 90px rgba(0,0,0,.28),
 0 0 40px rgba(255,255,255,.15);
 }
+/*======================
+STARS
+======================*/
+.star{
+position:absolute;
+width:3px;
+height:3px;
+border-radius:50%;
+background:#fff;
+box-shadow:0 0 8px #fff,0 0 14px rgba(255,255,255,.8);
+opacity:0;
+pointer-events:none;
+z-index:40;
+animation:starTwinkle 4s ease-in-out infinite;
+}
+@keyframes starTwinkle{
+0%,100%{opacity:.15;transform:scale(.7);}
+50%{opacity:1;transform:scale(1.5);}
+}
+
+/*======================
+WIND
+======================*/
+.tree,.bush,.grassBlade,.flower{
+transform-origin:center bottom;
+transition:transform 3s ease-in-out;
+}
+.tree{transform:rotate(calc(var(--wind,0deg)*.12));}
+.bush{transform:rotate(calc(var(--wind,0deg)*.18));}
+.grassBlade{transform:rotate(calc(var(--wind,0deg)*.45));}
+.flower{transform:rotate(calc(var(--wind,0deg)*.3));}
+
+/*======================
+TREE DETAILS
+======================*/
+.tree{
+will-change:transform;
+filter:drop-shadow(0 15px 18px rgba(0,0,0,.2));
+}
+.tree::after{
+content:"";
+position:absolute;
+inset:0;
+pointer-events:none;
+background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.2),transparent 35%);
+mix-blend-mode:screen;
+}
+
+/*======================
+MEMORY TREE
+======================*/
+#memoryTree{
+cursor:pointer;
+transition:.4s ease;
+filter:drop-shadow(0 0 15px rgba(255,230,140,.25));
+}
+#memoryTree:hover{
+transform:scale(1.05);
+filter:drop-shadow(0 0 28px rgba(255,230,140,.7));
+}
+#memoryTree:active{transform:scale(.98);}
+#memoryTree::after{
+content:"❤️";
+position:absolute;
+left:50%;
+top:25%;
+font-size:30px;
+transform:translate(-50%,-50%);
+animation:memoryHeart 2.4s ease-in-out infinite;
+filter:drop-shadow(0 0 12px rgba(255,70,120,.8));
+}
+@keyframes memoryHeart{
+0%,100%{transform:translate(-50%,-50%) scale(1);}
+50%{transform:translate(-50%,-58%) scale(1.2);}
+}
+
+/*======================
+SCENE CARDS
+======================*/
+.scene .glassCard{
+overflow:hidden;
+isolation:isolate;
+}
+.scene .glassCard::before{
+content:"";
+position:absolute;
+width:180%;
+height:80px;
+left:-40%;
+top:-120px;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+transform:rotate(-18deg);
+animation:cardShine 7s ease-in-out infinite;
+pointer-events:none;
+z-index:-1;
+}
+@keyframes cardShine{
+0%,55%{top:-130px;}
+75%,100%{top:120%;}
+}
+
+/*======================
+SCENE INTRO
+======================*/
+#sceneIntro .glassCard{
+background:linear-gradient(145deg,rgba(245,255,246,.84),rgba(215,255,224,.68));
+}
+#sceneFlower .glassCard{
+background:linear-gradient(145deg,rgba(255,250,225,.86),rgba(244,255,220,.68));
+}
+#sceneTree .glassCard{
+background:linear-gradient(145deg,rgba(255,246,224,.86),rgba(230,255,225,.7));
+}
+#sceneQuestion .glassCard{
+background:linear-gradient(145deg,rgba(255,235,243,.9),rgba(255,247,225,.76));
+}
+#sceneFinish .glassCard{
+background:linear-gradient(145deg,rgba(18,35,61,.76),rgba(16,58,45,.72));
+color:#fff;
+border-color:rgba(255,255,255,.22);
+}
+
+/*======================
+QUESTION
+======================*/
+#sceneQuestion h2{
+animation:questionPulse 2.2s ease-in-out infinite;
+}
+@keyframes questionPulse{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.025);}
+}
+#sceneQuestion .yes{
+position:relative;
+overflow:hidden;
+}
+#sceneQuestion .yes::after{
+content:"";
+position:absolute;
+inset:-5px;
+border-radius:inherit;
+border:2px solid rgba(255,255,255,.7);
+animation:yesRing 1.8s ease-out infinite;
+}
+@keyframes yesRing{
+0%{transform:scale(.8);opacity:.8;}
+100%{transform:scale(1.35);opacity:0;}
+}
+
+/*======================
+FINISH NIGHT
+======================*/
+#sceneFinish h2{
+color:#fff;
+text-shadow:0 0 15px rgba(255,255,255,.5);
+}
+#sceneFinish p{
+color:rgba(255,255,255,.9);
+}
+#sceneFinish .inviteCard{
+background:rgba(255,255,255,.12);
+border:1px solid rgba(255,255,255,.23);
+box-shadow:0 20px 60px rgba(0,0,0,.3);
+backdrop-filter:blur(18px);
+}
+
+/*======================
+MOON
+======================*/
+#sceneFinish::before{
+content:"";
+position:absolute;
+width:120px;
+height:120px;
+right:8%;
+top:8%;
+border-radius:50%;
+background:radial-gradient(circle at 35% 30%,#fff,#fffbd0 45%,#e9e6bb 70%);
+box-shadow:0 0 35px rgba(255,255,210,.7),0 0 90px rgba(255,255,200,.35);
+animation:moonFloat 7s ease-in-out infinite;
+}
+@keyframes moonFloat{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+}
+
+/*======================
+VIGNETTE
+======================*/
+#world::after{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:500;
+background:radial-gradient(circle at center,transparent 55%,rgba(0,25,12,.18) 100%);
+}
+
+/*======================
+MOBILE
+======================*/
+@media(max-width:700px){
+.star{width:2px;height:2px;}
+#sceneFinish::before{width:75px;height:75px;right:5%;top:5%;}
+#memoryTree::after{font-size:23px;}
+.scene .glassCard::before{height:55px;}
+}
