@@ -1965,3 +1965,40 @@ MOBILE
 #memoryTree::after{font-size:23px;}
 .scene .glassCard::before{height:55px;}
 }
+/*======================
+FOREST ANIMALS
+======================*/
+
+.forestAnimal{
+position:absolute;
+z-index:130;
+cursor:pointer;
+user-select:none;
+animation:animalAppear .6s ease,animalBounce 2.5s ease-in-out infinite;
+filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
+transition:transform .25s;
+}
+
+.forestAnimal:hover{
+transform:scale(1.15);
+}
+
+@keyframes animalAppear{
+from{
+opacity:0;
+transform:translateY(40px) scale(.5);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+@keyframes animalBounce{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-8px);
+}
+}
