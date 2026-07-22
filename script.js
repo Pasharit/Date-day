@@ -1123,3 +1123,66 @@ height:285px;
 .finalMessageInner{padding:32px 20px;}
 .cursorLight{display:none;}
 }
+/*======================
+FOREST ANIMALS
+======================*/
+
+const animals=["🐸","🐷"];
+
+function spawnAnimal(){
+
+const a=document.createElement("div");
+
+a.className="forestAnimal";
+
+a.innerHTML=animals[Math.floor(Math.random()*animals.length)];
+
+a.style.left=Math.random()*90+5+"vw";
+
+a.style.bottom=(5+Math.random()*12)+"vh";
+
+a.style.fontSize=(34+Math.random()*22)+"px";
+
+world.appendChild(a);
+
+a.addEventListener("click",()=>{
+
+spark(
+a.getBoundingClientRect().left+20,
+a.getBoundingClientRect().top+20
+);
+
+a.animate([
+{transform:"scale(1)"},
+{transform:"scale(1.5) rotate(15deg)"},
+{transform:"scale(0)",opacity:0}
+],{
+duration:700,
+fill:"forwards"
+});
+
+setTimeout(()=>a.remove(),700);
+
+});
+
+setTimeout(()=>{
+
+if(a.parentNode){
+
+a.animate([
+{opacity:1},
+{opacity:0}
+],{
+duration:1000,
+fill:"forwards"
+});
+
+setTimeout(()=>a.remove(),1000);
+
+}
+
+},9000);
+
+}
+
+setInterval(spawnAnimal,12000);
